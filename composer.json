@@ -1,0 +1,31 @@
+{
+    "name": "abs/card-pkg",
+    "description": "For Card CRUD",
+    "type": "library",
+    "require":
+    {},
+    "require-dev":
+    {},
+    "authors": [
+    {
+        "name": "Abdul",
+        "email": "abdulpro@gmail.com"
+    }],
+    "minimum-stability": "dev",
+    "extra":
+    {
+        "laravel":
+        {
+            "providers": [
+                "Abs\\CardPkg\\CardPkgServiceProvider"
+            ]
+        }
+    },
+    "autoload":
+    {
+        "psr-4":
+        {
+            "Abs\\CardPkg\\": "src/"
+        }
+    }
+}
