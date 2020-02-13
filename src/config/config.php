@@ -1,5 +1,5 @@
 <?php
 return [
-	'DEV' => env('SHIPPING_METHOD_PKG_DEV', false),
+	'DEV' => env('CARD_PKG_DEV', false),
 	// 'theme' => 'App\CardType',
 ];
