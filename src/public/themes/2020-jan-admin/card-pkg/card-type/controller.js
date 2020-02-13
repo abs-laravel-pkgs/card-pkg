@@ -45,8 +45,7 @@ app.component('cardTypeList', {
             columns: [
                 { data: 'action', searchable: false, class: 'action' },
                 { data: 'name', name: 'card_types.name', searchable: true },
-                { data: 'delivery_time', name: 'card_types.delivery_time', searchable: true },
-                { data: 'charge', name: 'card_types.charge', searchable: false },
+                { data: 'display_order', name: 'card_types.display_order', searchable: false },
             ],
             "infoCallback": function(settings, start, end, max, total, pre) {
                 $('#table_info').html(total + '/' + max)
@@ -186,17 +185,14 @@ app.component('cardTypeForm', {
                     minlength: 3,
                     maxlength: 191,
                 },
-                'delivery_time': {
+                'display_order': {
                     required: true,
+                    number: true,
                     minlength: 3,
-                    maxlength: 255,
+                    maxlength: 10,
                 },
                 'logo_id': {
                     extension: "jpg|jpeg|png|ico|bmp|svg|gif",
-                },
-                'charge': {
-                    required: true,
-                    number: true,
                 },
             },
             messages: {

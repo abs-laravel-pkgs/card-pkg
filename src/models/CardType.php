@@ -15,8 +15,7 @@ class CardType extends Model {
 	public $timestamps = true;
 	protected $fillable = [
 		'name',
-		'delivery_time',
-		'charge',
+		'display_order',
 	];
 
 	public static function createFromObject($record_data) {

@@ -89,21 +89,19 @@ class CardTypeController extends Controller {
 	}
 
 	public function saveCardType(Request $request) {
-		//dd($request->all());
+		// dd($request->all());
 		try {
 			$error_messages = [
 				'name.required' => 'Name is Required',
 				'name.unique' => 'Name is already taken',
-				'delivery_time.required' => 'Delivery Time is Required',
-				'charge.required' => 'Charge is Required',
+				'display_order.required' => 'Display Order is Required',
 			];
 			$validator = Validator::make($request->all(), [
 				'name' => [
 					'required:true',
 					'unique:card_types,name,' . $request->id . ',id,company_id,' . Auth::user()->company_id,
 				],
-				'delivery_time' => 'required',
-				'charge' => 'required',
+				'display_order' => 'required',
 				'logo_id' => 'mimes:jpeg,jpg,png,gif,ico,bmp,svg|nullable|max:10000',
 			], $error_messages);
 			if ($validator->fails()) {
@@ -188,8 +186,12 @@ class CardTypeController extends Controller {
 	public function deleteCardType(Request $request) {
 		DB::beginTransaction();
 		try {
+			$card_type = CardType::withTrashed()->where('id', $request->id)->first();
+			if (!is_null($card_type->logo_id)) {
+				Attachment::where('company_id', Auth::user()->company_id)->where('attachment_of_id', 20)->where('entity_id', $request->id)->forceDelete();
+			}
 			CardType::withTrashed()->where('id', $request->id)->forceDelete();
-			Attachment::where('attachment_of_id', 20)->where('entity_id', $request->id)->forceDelete();
+
 			DB::commit();
 			return response()->json(['success' => true, 'message' => 'Card Deleted Successfully']);
 		} catch (Exception $e) {
