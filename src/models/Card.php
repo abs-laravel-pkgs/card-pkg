@@ -6,20 +6,25 @@ use Abs\HelperPkg\Traits\SeederTrait;
 use App\Company;
 use App\Config;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class CardType extends Model {
+// use Illuminate\Database\Eloquent\SoftDeletes;
+
+class Card extends Model {
 	use SeederTrait;
-	use SoftDeletes;
-	protected $table = 'card_types';
-	public $timestamps = true;
+	// use SoftDeletes;
+	protected $table = 'cards';
+	public $timestamps = false;
 	protected $fillable = [
-		'name',
-		'display_order',
+		'type_id',
+		'name_on_card',
+		'number',
+		'expiry_month',
+		'expiry_year',
+		'cvv',
 	];
 
-	public function logo() {
-		return $this->belongsTo('Abs\Basic\Attachment', 'logo_id');
+	public function type() {
+		return $this->belongsTo('App\CardType');
 	}
 
 	public static function createFromObject($record_data) {
