@@ -19,7 +19,7 @@ class CardType extends Model {
 	];
 
 	public function logo() {
-		return $this->belongsTo('Abs\Basic\Attachment', 'logo_id');
+		return $this->belongsTo('Abs\BasicPkg\Attachment', 'logo_id');
 	}
 
 	public static function createFromObject($record_data) {
