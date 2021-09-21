@@ -20,7 +20,7 @@ class Card extends Model {
 		'number',
 		'expiry_month',
 		'expiry_year',
-		'cvv',
+		'cvc',
 	];
 
 	public function type() {
