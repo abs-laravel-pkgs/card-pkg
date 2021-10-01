@@ -1,7 +1,7 @@
 <?php
 
 namespace Abs\CardPkg;
-use Abs\BasicPkg\Attachment;
+use Abs\BasicPkg\Models\Attachment;
 use Abs\CardPkg\CardType;
 use App\Http\Controllers\Controller;
 use Auth;
