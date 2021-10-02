@@ -5,18 +5,23 @@ namespace Abs\CardPkg;
 use Abs\HelperPkg\Traits\SeederTrait;
 use App\Company;
 use App\Config;
+use App\Models\BaseModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class CardType extends Model {
+class CardType extends BaseModel {
 	use SeederTrait;
 	use SoftDeletes;
 	protected $table = 'card_types';
 	public $timestamps = true;
-	protected $fillable = [
-		'name',
-		'display_order',
-	];
+  protected $fillable = [
+    'name',
+    'display_order',
+  ];
+  protected $visible = [
+    'name',
+    'logo',
+  ];
 
 	public function logo() {
 		return $this->belongsTo('Abs\BasicPkg\Models\Attachment', 'logo_id');
